@@ -5,6 +5,13 @@ const port = 5000
 
 const app = express()
 
-app.get('/', (req , res) => res.send("High this is a chatbot"))
+app.get('/', (req , res) => res.send("Hi this is a chatbot"))
+
+app.get('/webhook/', (req, res) => {
+    if (req,query['hub.verify_token'] === "ErickKiarie"){
+        res.send(req,query['hub.challenge']) 
+    res.send("Wrong token")
+    }
+})
 
 app.listen(process.env.PORT || port, () => console.log("running on port 5000"))
